@@ -1,0 +1,11 @@
+# 編譯產物
+*.o
+*.obj
+*.exe
+*.out
+
+# 建置資料夾
+build/
+
+# VSCode 設定
+.vscode/
