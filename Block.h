@@ -1,7 +1,7 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#define PIECE_SIZE 5
+#define BLOCK_SIZE 5
 
 class Block {
     public:
@@ -13,7 +13,7 @@ class Block {
     Block (int pType);
 };
 
-static int shapes[7][4][PIECE_SIZE][PIECE_SIZE] = {
+static int shapes[7][4][BLOCK_SIZE][BLOCK_SIZE] = {
     // O 方塊
     {
         {
