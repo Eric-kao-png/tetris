@@ -3,9 +3,10 @@
 
 #include "Board.h"
 #include "Block.h"
-#include <time.h>
+#include <ctime>
 #include <cstdlib>
 #include <unistd.h>
+#include <sys/select.h>
 
 class Game {
     private:

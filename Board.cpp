@@ -95,34 +95,44 @@ bool Board::isGameOver () {
 }
 
 void Board::draw (const Block& currentBlock) {
+    // top
+    std::cout << "+";
+    for (int i = 0; i < BOARD_WIDTH; i++) {
+        std::cout << "-";
+    }
+    std::cout << "+";
+    std::cout << std::endl;
+    // board
     for (int y = 0; y < BOARD_HEIGHT; y++) {
-        std::cout << "|"; // lift board
-        for (int x = 0; x < BOARD_WIDTH; x++) { // game console
-
-            bool isFilled = false;
-            for (int j = 0; j < BLOCK_SIZE; j++) {
-                for (int i = 0; i < BLOCK_SIZE; i++) {
-                    if (shapes[j][i] != 0) {
-                        int boardX = currentBlock.mX + i;
-                        int boardY = currentBlock.mY + j;
-                        if (boardX == x && boardY == y) {
-                            isFilled = true;
-                        }
-                    }
+        std::cout << "|";
+        for (int x = 0; x < BOARD_WIDTH; x++) {
+            if (currentBlock.mX <= x && x < currentBlock.mX + BLOCK_SIZE && currentBlock.mY <= y && y < currentBlock.mY + BLOCK_SIZE) {
+                if (mGrid[y][x] == 1) {
+                    std::cout << "█";
+                } else if (shapes[currentBlock.mType][currentBlock.mRotation][y - currentBlock.mY][x - currentBlock.mX] == 0) {
+                    std::cout << " ";
+                } else if (shapes[currentBlock.mType][currentBlock.mRotation][y - currentBlock.mY][x - currentBlock.mX] == 1) {
+                    std::cout << "#";
+                } else {
+                    std::cout << "*";
+                }
+            } else {
+                if (mGrid[y][x] == 0) {
+                    std::cout << " ";
+                } else {
+                    std::cout << "█";
                 }
             }
-            
-            if (isFilled || mGrid[y][x] == 1) {
-                std::cout << "#";
-            } else {
-                std::cout << " ";
-            }
         }
-        std::cout << "|"; // right board
+        std::cout << "|";
         std::cout << std::endl;
     }
 
-    for (int i = 0; i < BOARD_WIDTH + 2; i++) { // underline
-        std::cout << "=";
+    // underline
+    std::cout << "+";
+    for (int i = 0; i < BOARD_WIDTH; i++) { 
+        std::cout << "-";
     }
+    std::cout << "+";
+    std::cout << std::endl;
 }

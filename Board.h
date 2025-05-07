@@ -4,8 +4,8 @@
 #include "Block.h"
 #include <iostream>
 
-#define BOARD_WIDTH 10
-#define BOARD_HEIGHT 20
+#define BOARD_WIDTH 8
+#define BOARD_HEIGHT 16
 
 class Board {
     private:

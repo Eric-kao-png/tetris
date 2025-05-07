@@ -1,13 +1,12 @@
 #include "Game.h"
 #include <termios.h>
+#include <unistd.h>
 
 int main (void) {
     struct termios oldt, newt;
     tcgetattr (STDIN_FILENO, &oldt); // 取得當前終端設定
     newt = oldt;
-    newt.c_cflag &= ~(ICANON | ECHO);
-    newt.c_cc[VMIN] = 0;
-    newt.c_cc[VTIME] = 1;
+    newt.c_lflag &= ~(ICANON | ECHO);
     tcsetattr (STDIN_FILENO, TCSANOW, &newt); // 套用設定
 
     system("clear");

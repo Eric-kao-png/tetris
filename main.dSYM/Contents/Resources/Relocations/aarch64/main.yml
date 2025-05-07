@@ -1,0 +1,34 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/Kaonienyung/Documents/My_CPP/tetris/main'
+relocations:
+  - { offsetInCU: 0xD9, offset: 0xD9, size: 0x8, addend: 0x0, symName: __ZL6shapes, symObjAddr: 0xB0, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x526D, offset: 0x526D, size: 0x8, addend: 0x0, symName: __ZStL8__ioinit, symObjAddr: 0x16E10, symBinAddr: 0x10000ABC0, symSize: 0x0 }
+  - { offsetInCU: 0x5757, offset: 0x5757, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000276C, symSize: 0xB0 }
+  - { offsetInCU: 0x66, offset: 0x57FF, size: 0x8, addend: 0x0, symName: __ZL6shapes, symObjAddr: 0x674, symBinAddr: 0x100008AF0, symSize: 0x0 }
+  - { offsetInCU: 0x3C44, offset: 0x93DD, size: 0x8, addend: 0x0, symName: __ZStL8__ioinit, symObjAddr: 0x18408, symBinAddr: 0x10000ABC1, symSize: 0x0 }
+  - { offsetInCU: 0x3E79, offset: 0x9612, size: 0x8, addend: 0x0, symName: __ZN4Game4loopEv, symObjAddr: 0x370, symBinAddr: 0x100002BDC, symSize: 0x304 }
+  - { offsetInCU: 0x3FA9, offset: 0x9742, size: 0x8, addend: 0x0, symName: __ZN4Game10isGameOverEv, symObjAddr: 0x358, symBinAddr: 0x100002BC4, symSize: 0x18 }
+  - { offsetInCU: 0x3FD4, offset: 0x976D, size: 0x8, addend: 0x0, symName: __ZN4Game11rotatePieceEv, symObjAddr: 0x2CC, symBinAddr: 0x100002B38, symSize: 0x8C }
+  - { offsetInCU: 0x3FFF, offset: 0x9798, size: 0x8, addend: 0x0, symName: __ZN4Game14movePieceRightEv, symObjAddr: 0x258, symBinAddr: 0x100002AC4, symSize: 0x74 }
+  - { offsetInCU: 0x402A, offset: 0x97C3, size: 0x8, addend: 0x0, symName: __ZN4Game13movePieceLeftEv, symObjAddr: 0x1E4, symBinAddr: 0x100002A50, symSize: 0x74 }
+  - { offsetInCU: 0x4055, offset: 0x97EE, size: 0x8, addend: 0x0, symName: __ZN4Game13movePieceDownEv, symObjAddr: 0x144, symBinAddr: 0x1000029B0, symSize: 0xA0 }
+  - { offsetInCU: 0x4080, offset: 0x9819, size: 0x8, addend: 0x0, symName: __ZN4Game13spawnNewBlockEv, symObjAddr: 0x98, symBinAddr: 0x100002904, symSize: 0xAC }
+  - { offsetInCU: 0x40DB, offset: 0x9874, size: 0x8, addend: 0x0, symName: __ZN4GameC1Ev, symObjAddr: 0x4C, symBinAddr: 0x1000028B8, symSize: 0x4C }
+  - { offsetInCU: 0x4103, offset: 0x989C, size: 0x8, addend: 0x0, symName: __ZN4GameC2Ev, symObjAddr: 0x0, symBinAddr: 0x10000286C, symSize: 0x4C }
+  - { offsetInCU: 0x6B, offset: 0x99A5, size: 0x8, addend: 0x0, symName: __ZL6shapes, symObjAddr: 0x958, symBinAddr: 0x1000095E0, symSize: 0x0 }
+  - { offsetInCU: 0x3BA0, offset: 0xD4DA, size: 0x8, addend: 0x0, symName: __ZStL8__ioinit, symObjAddr: 0x18058, symBinAddr: 0x10000ABC2, symSize: 0x0 }
+  - { offsetInCU: 0x3CE1, offset: 0xD61B, size: 0x8, addend: 0x0, symName: __ZN5Board4drawERK5Block, symObjAddr: 0x58C, symBinAddr: 0x1000034BC, symSize: 0x3CC }
+  - { offsetInCU: 0x3D9F, offset: 0xD6D9, size: 0x8, addend: 0x0, symName: __ZN5Board10isGameOverEv, symObjAddr: 0x53C, symBinAddr: 0x10000346C, symSize: 0x50 }
+  - { offsetInCU: 0x3DEB, offset: 0xD725, size: 0x8, addend: 0x0, symName: __ZN5Board9clearLineEi, symObjAddr: 0x478, symBinAddr: 0x1000033A8, symSize: 0xC4 }
+  - { offsetInCU: 0x3E88, offset: 0xD7C2, size: 0x8, addend: 0x0, symName: __ZN5Board10checkLinesEv, symObjAddr: 0x3C8, symBinAddr: 0x1000032F8, symSize: 0xB0 }
+  - { offsetInCU: 0x3F25, offset: 0xD85F, size: 0x8, addend: 0x0, symName: __ZN5Board10placeBlockERK5Block, symObjAddr: 0x270, symBinAddr: 0x1000031A0, symSize: 0x158 }
+  - { offsetInCU: 0x3FD1, offset: 0xD90B, size: 0x8, addend: 0x0, symName: __ZN5Board11isCollisionEiiii, symObjAddr: 0x124, symBinAddr: 0x100003054, symSize: 0x14C }
+  - { offsetInCU: 0x40AA, offset: 0xD9E4, size: 0x8, addend: 0x0, symName: __ZN5Board11isCellEmptyEii, symObjAddr: 0xE0, symBinAddr: 0x100003010, symSize: 0x44 }
+  - { offsetInCU: 0x4132, offset: 0xDA6C, size: 0x8, addend: 0x0, symName: __ZN5BoardC1Ev, symObjAddr: 0x70, symBinAddr: 0x100002FA0, symSize: 0x70 }
+  - { offsetInCU: 0x41AC, offset: 0xDAE6, size: 0x8, addend: 0x0, symName: __ZN5BoardC2Ev, symObjAddr: 0x0, symBinAddr: 0x100002F30, symSize: 0x70 }
+  - { offsetInCU: 0xA2, offset: 0xDBEB, size: 0x8, addend: 0x0, symName: __ZN5BlockC2Ei, symObjAddr: 0x0, symBinAddr: 0x1000038D8, symSize: 0x3C }
+  - { offsetInCU: 0x75, offset: 0xDBBE, size: 0x8, addend: 0x0, symName: __ZL6shapes, symObjAddr: 0x78, symBinAddr: 0x10000A0D0, symSize: 0x0 }
+  - { offsetInCU: 0xB4, offset: 0xDBFD, size: 0x8, addend: 0x0, symName: __ZN5BlockC1Ei, symObjAddr: 0x3C, symBinAddr: 0x100003914, symSize: 0x3C }
+  - { offsetInCU: 0xE4, offset: 0xDC2D, size: 0x8, addend: 0x0, symName: __ZN5BlockC2Ei, symObjAddr: 0x0, symBinAddr: 0x1000038D8, symSize: 0x3C }
+...

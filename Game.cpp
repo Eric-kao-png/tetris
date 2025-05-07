@@ -18,8 +18,8 @@ void Game::spawnNewBlock () {
 }
 
 void Game::movePieceDown () {
-    if (!mBoard.isCollision (mBlock.mType, mBlock.mRotation, mBlock.mX, mBlock.mY)) {
-        mBlock.mY -= 1;
+    if (!mBoard.isCollision (mBlock.mType, mBlock.mRotation, mBlock.mX, mBlock.mY + 1)) {
+        mBlock.mY += 1;
     } else {
         mBoard.placeBlock (mBlock);
         mBoard.checkLines();
@@ -28,13 +28,13 @@ void Game::movePieceDown () {
 }
 
 void Game::movePieceLeft () {
-    if (!mBoard.isCollision (mBlock.mType, mBlock.mRotation, mBlock.mX, mBlock.mY)) {
+    if (!mBoard.isCollision (mBlock.mType, mBlock.mRotation, mBlock.mX - 1, mBlock.mY)) {
         mBlock.mX -= 1;
     }
 }
 
 void Game::movePieceRight () {
-    if (!mBoard.isCollision (mBlock.mType, mBlock.mRotation, mBlock.mX, mBlock.mY)) {
+    if (!mBoard.isCollision (mBlock.mType, mBlock.mRotation, mBlock.mX + 1, mBlock.mY)) {
         mBlock.mX += 1;
     }
 }
@@ -54,41 +54,44 @@ bool Game::isGameOver () {
 }
 
 void Game::loop () {
-    int tick = 0;
-    const int tickThreshold = 10; // 每10個迴圈觸發一次自動下落
     while (!mGameOver) {
         system("clear");
         mBoard.draw(mBlock); // 繪製目前棋盤和方塊
-        std::cout.flush(); // 確保輸出立即顯示
 
-        char inputBuf[1];
-        int n = read(STDIN_FILENO, inputBuf, 1);
-        // 根據讀取的字元做對應動作
-        if (n > 0) {
-            
-            char ch = inputBuf[0];
-            if (ch == 'q') {
-                break;
-            }
-            if (ch == 'a') {
-                movePieceLeft();
-            }
-            if (ch == 'd') {
-                movePieceRight();
-            }
-            if (ch == 's') {
-                movePieceDown();
-            }
-            if (ch == 'w') {
-                rotatePiece();
+        fd_set readfds;
+        FD_ZERO(&readfds);
+        FD_SET(STDIN_FILENO, &readfds);
+
+        struct timeval tv = {1, 0};
+        int retval = select (STDIN_FILENO + 1, &readfds, nullptr, nullptr, &tv);
+
+        if (retval > 0 && FD_ISSET (STDIN_FILENO, &readfds)) {
+            char input = 0;
+            if (read (STDIN_FILENO, &input, 1) > 0) {
+                if (input == 'q') {
+                    mGameOver = true;
+                    break;
+                }
+                if (input == 'a') {
+                    movePieceLeft();
+                    continue;
+                }
+                if (input == 'd') {
+                    movePieceRight();
+                    continue;
+                }
+                if (input == 's') {
+                    movePieceDown();
+                    continue;
+                }
+                if (input == 'w') {
+                    rotatePiece();
+                    continue;
+                }
             }
         }
 
-        tick++;
-        if (tick == 10) {
-            tick = 0;
-            movePieceDown();
-        }
+        movePieceDown();
     }
 
     if (mGameOver) {
