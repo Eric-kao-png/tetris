@@ -7,6 +7,12 @@
 #include <cstdlib>
 #include <unistd.h>
 #include <sys/select.h>
+#include <chrono>
+
+#define ONE_LINE_SCORE 10
+#define TWO_LINE_SCORE 40
+#define THREE_LINE_SCORE 100
+#define FOUR_LINE_SCORE 400
 
 class Game {
     private:
@@ -14,6 +20,7 @@ class Game {
     Board mBoard;
     Block mBlock;
     bool mGameOver;
+    int mScore;
 
     public:
 
@@ -24,8 +31,9 @@ class Game {
     void movePieceLeft ();
     void movePieceRight ();
     void rotatePiece ();
-    bool isGameOver ();
-    void loop ();
+    int calculateScore (int clearedLines);
+    void run ();
+    int getScore ();
 };
 
 #endif

@@ -1,10 +1,9 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#define BLOCK_SIZE 5
+#define PIECE_SIZE 5
 
-class Block {
-    public:
+struct Block {
 
     int mType; // 方塊種類 (0~6 對應7種基本方塊)
     int mRotation; // 當前旋轉狀態 (0~3)
@@ -13,7 +12,9 @@ class Block {
     Block (int pType);
 };
 
-static int shapes[7][4][BLOCK_SIZE][BLOCK_SIZE] = {
+enum {EMPTY_BLOCK, FULL_BLOCK, PIVOT_BLOCK};
+
+static int PieceShapes[7][4][PIECE_SIZE][PIECE_SIZE] = {
     // O 方塊
     {
         {
