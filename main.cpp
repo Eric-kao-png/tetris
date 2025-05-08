@@ -18,18 +18,16 @@ int main (void) {
     tcsetattr (STDIN_FILENO, TCSANOW, &oldt);
 
     std::string opt_1;
-    std::cout << "do you want to save the record? YES/NO: ";
+    std::cout << "do you want to save the record? Enter \""  YES_COMMEND  "\" for YES: ";
     std::cin >> opt_1;
-    std::cout << std::endl;
-    if (opt_1 == "YES") {
+    if (opt_1 == YES_COMMEND) {
         ps.inputPlayer (game.getScore());
     }
 
     std::string opt_2;
-    std::cout << "do you want to see the rank? YES/NO: ";
+    std::cout << "do you want to see the rank? Enter \"" YES_COMMEND "\" if YES: ";
     std::cin >> opt_2;
-    std::cout << std::endl;
-    if (opt_2 == "YES") {
+    if (opt_2 == YES_COMMEND) {
         ps.showPlayersRank();
     }
 

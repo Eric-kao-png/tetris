@@ -28,4 +28,4 @@ class Board {
     void draw (const Block& currentBlock, int score); // 繪製棋盤（包含當前方塊）
 };
 
-#endif
+#endif // BOARD_H

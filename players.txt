@@ -1,4 +1,1 @@
-Eric4,780
-Eric,40
-Eric2,0
-Eric3,0
+canYouBeatThis,10000

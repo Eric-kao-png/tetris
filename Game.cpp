@@ -75,20 +75,26 @@ void Game::run () {
         if (retval > 0 && FD_ISSET (STDIN_FILENO, &readfds)) {
             char input = 0;
             if (read (STDIN_FILENO, &input, 1) > 0) {
-                if (input == 'q') {
-                    mGameOver = true;
-                }
-                if (input == 'a') {
-                    movePieceLeft();
-                }
-                if (input == 'd') {
-                    movePieceRight();
-                }
-                if (input == 's') {
+                switch (input) {
+                    case 'q':
+                    mGameOver = true; break;
+                    case 'a':
+                    movePieceLeft(); break;
+                    case 'd':
+                    movePieceRight(); break;
+                    case 'w':
+                    rotatePiece(); break;
+                    case 's':
                     movePieceDown();
-                }
-                if (input == 'w') {
-                    rotatePiece();
+
+                    if (mBoard.isCollision (mBlock.mType, mBlock.mRotation, mBlock.mX, mBlock.mY + 1) == true) {
+
+                        mBoard.placeBlock (mBlock);
+                        int clearedLines = mBoard.clearLines();
+                        mScore += calculateScore (clearedLines);
+                        spawnNewBlock();
+        
+                    } break;
                 }
             }
         }

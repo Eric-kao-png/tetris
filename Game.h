@@ -36,4 +36,4 @@ class Game {
     int getScore ();
 };
 
-#endif
+#endif // GAME_H

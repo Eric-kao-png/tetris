@@ -11,6 +11,8 @@
 #include <sstream>
 #include <iomanip>
 
+#define YES_COMMEND "y"
+
 class PlayerSystem {
     private:
 
