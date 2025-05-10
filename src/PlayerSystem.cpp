@@ -1,4 +1,6 @@
-#include "PlayerSystem.hpp"
+#include "../include/PlayerSystem.hpp"
+
+#define PLAYERS_PATH "../data/players.txt"
 
 bool playerComp (std::pair< std::string, int >& p1, std::pair< std::string, int >& p2) {
     return (p1.second >= p2.second);
@@ -10,7 +12,7 @@ PlayerSystem::PlayerSystem () {
 
 void PlayerSystem::loadData () {
     try {
-        std::ifstream inputFile("players.txt");
+        std::ifstream inputFile(PLAYERS_PATH);
 
         if (!inputFile) {
             throw std::runtime_error("\"Players.txt\" does not exist!\n");
@@ -48,7 +50,7 @@ void PlayerSystem::inputPlayer (int score) {
 }
 
 void PlayerSystem::writeFile () {
-    std::ofstream outputFile("players.txt");
+    std::ofstream outputFile(PLAYERS_PATH);
 
     try {
         if (!outputFile) {

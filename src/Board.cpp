@@ -1,4 +1,4 @@
-#include "Board.h"
+#include "../include/Board.hpp"
 
 Board::Board () {
     for (int y = 0; y < BOARD_HEIGHT; y++) {

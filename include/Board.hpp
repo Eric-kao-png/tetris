@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "Block.h"
+#include "Piece.hpp"
 #include <iostream>
 
 #define BOARD_WIDTH 8

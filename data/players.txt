@@ -1,0 +1,2 @@
+canYouBeatThis,10000
+Eric,870

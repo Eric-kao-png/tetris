@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "../include/Game.hpp"
 
 Game::Game () : mGameOver(false), mBlock(Block(0)), mScore(0) {
     srand (static_cast<unsigned int> (std::time (nullptr)));

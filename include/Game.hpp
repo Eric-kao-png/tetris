@@ -1,8 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "Board.h"
-#include "Block.h"
+#include "Board.hpp"
+#include "Piece.hpp"
 #include <ctime>
 #include <cstdlib>
 #include <unistd.h>

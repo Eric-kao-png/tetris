@@ -9,3 +9,6 @@ build/
 
 # VSCode 設定
 .vscode/
+
+# 忽略所有 dSYM 目錄
+*.dSYM/

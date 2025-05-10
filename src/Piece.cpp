@@ -1,4 +1,4 @@
-#include "Block.h"
+#include "../include/Piece.hpp"
 
 Block::Block (int pType) 
     : mType(pType),
