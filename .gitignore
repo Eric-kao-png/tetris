@@ -5,10 +5,9 @@
 *.out
 
 # 建置資料夾
-build/
+/build/
+*.dSYM/
+.DS_Store
 
 # VSCode 設定
 .vscode/
-
-# 忽略所有 dSYM 目錄
-*.dSYM/
