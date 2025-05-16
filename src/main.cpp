@@ -3,43 +3,70 @@
 #include <termios.h>
 #include <unistd.h>
 
-int main (void) {
-    
-    bool playAgain = true;
-    do {
-        struct termios oldt, newt;
-        tcgetattr (STDIN_FILENO, &oldt); // 取得當前終端設定
+namespace {
+    void useNewTermios (struct termios& oldt, struct termios& newt) {
+        tcgetattr (STDIN_FILENO, &oldt); 
         newt = oldt;
         newt.c_lflag &= ~(ICANON | ECHO);
-        tcsetattr (STDIN_FILENO, TCSANOW, &newt); // 套用設定
+        tcsetattr (STDIN_FILENO, TCSANOW, &newt); 
+    }
 
-        system("clear");
+    void useOldTermios (struct termios& oldt) {
+        tcsetattr (STDIN_FILENO, TCSANOW, &oldt);
+    }
+
+    void askSaving (Game& game, PlayerSystem& ps) {
+        std::string opt;
+        std::cout << "do you want to save the record? Enter \"";
+        std::cout << YES_COMMEND;
+        std::cout << "\" for YES: ";
+        std::cin >> opt;
+        if (opt == YES_COMMEND) {
+            ps.inputPlayer (game.getScore());
+        }
+    }
+
+    void askShowingRank (PlayerSystem& ps) {
+        std::string opt;
+        std::cout << "do you want to see the rank? Enter \"";
+        std::cout << YES_COMMEND;
+        std::cout << "\" if YES: ";
+        std::cin >> opt;
+        if (opt == YES_COMMEND) {
+            ps.showPlayersRank();
+        }
+    }
+
+    bool askPlayingAgain () {
+        std::string opt;
+        std::cout << "do you want to play again? Enter \"";
+        std::cout << YES_COMMEND;
+        std::cout << "\" if YES: ";
+        std::cin >> opt;
+        if (opt == YES_COMMEND) {
+            return true;
+        }
+        return false;
+    }
+}
+
+int main (void) {
+    
+    bool playAgain = false;
+    do {
+        struct termios oldt, newt;
+        useNewTermios (oldt, newt);
+
         Game game;
         PlayerSystem ps;
         game.run();
 
-        tcsetattr (STDIN_FILENO, TCSANOW, &oldt);
+        useOldTermios (oldt);
 
-        std::string opt_1;
-        std::cout << "do you want to save the record? Enter \""  YES_COMMEND  "\" for YES: ";
-        std::cin >> opt_1;
-        if (opt_1 == YES_COMMEND) {
-            ps.inputPlayer (game.getScore());
-        }
-
-        std::string opt_2;
-        std::cout << "do you want to see the rank? Enter \"" YES_COMMEND "\" if YES: ";
-        std::cin >> opt_2;
-        if (opt_2 == YES_COMMEND) {
-            ps.showPlayersRank();
-        }
-
-        std::string opt_3;
-        std::cout << "do you want to play again? Enter \"" YES_COMMEND "\" if YES: ";
-        std::cin >> opt_3;
-        if (opt_3 != YES_COMMEND) {
-            playAgain = false;
-        }
+        askSaving (game, ps);
+        askShowingRank (ps);
+        playAgain = askPlayingAgain();
+        
     } while (playAgain);
 
     return 0;

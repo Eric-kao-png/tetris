@@ -19,13 +19,14 @@ class PlayerSystem {
     std::vector< std::pair<std::string, int> > players;
 
     void loadData ();
-    void writeFile ();
+    std::string inputMessage () const;
+    void writeFile () const;
 
     public:
 
     PlayerSystem ();
 
-    void showPlayersRank ();
+    void showPlayersRank () const;
     void inputPlayer (int score);
 };
 

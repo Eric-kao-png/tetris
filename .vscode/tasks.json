@@ -13,7 +13,7 @@
                 "Piece.cpp",
                 "PlayerSystem.cpp",
                 "-o",
-                "${workspaceFolder}/build/Debug/tetris"
+                "${workspaceFolder}/build/tetris"
             ],
             "options": {
                 "cwd": "${fileDirname}"

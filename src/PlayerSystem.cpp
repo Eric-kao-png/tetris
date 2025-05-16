@@ -2,8 +2,10 @@
 
 #define PLAYERS_PATH "../data/players.txt"
 
-bool playerComp (std::pair< std::string, int >& p1, std::pair< std::string, int >& p2) {
-    return (p1.second >= p2.second);
+namespace {
+    bool playerComp (std::pair<std::string, int>& p1, std::pair<std::string, int>& p2) {
+        return (p1.second >= p2.second);
+    }
 }
 
 PlayerSystem::PlayerSystem () {
@@ -19,14 +21,14 @@ void PlayerSystem::loadData () {
         }
 
         std::string line;
-        while ( getline (inputFile, line) ) {
-            std::string name, scoreStr;
-            int score;
+        while (getline (inputFile, line)) {
             std::istringstream iss(line);
+            std::string name;
+            int score;
             getline (iss, name, ',');
             iss >> score;
             
-            players.push_back (std::pair<std::string, int> (name, score));
+            players.emplace_back (name, score);
         }
 
         inputFile.close();
@@ -37,24 +39,28 @@ void PlayerSystem::loadData () {
 }
 
 void PlayerSystem::inputPlayer (int score) {
-    std::string name;
-    std::cout << "Please enter your name: ";
-    std::cin >> name;
-    std::cout << std::endl;
+    std::string name = inputMessage();
 
-    players.push_back (std::pair< std::string, int > (name, score));
-
+    players.emplace_back (name, score);
     std::sort (players.begin(), players.end(), playerComp);
 
     writeFile ();
 }
 
-void PlayerSystem::writeFile () {
-    std::ofstream outputFile(PLAYERS_PATH);
+std::string PlayerSystem::inputMessage () const {
+    std::string name;
+    std::cout << "Please enter your name: ";
+    std::cin >> name;
+    std::cout << std::endl;
+    return name;
+}
+
+void PlayerSystem::writeFile () const {
+    std::ofstream outputFile (PLAYERS_PATH);
 
     try {
         if (!outputFile) {
-            throw std::runtime_error("\"Players.txt\" does not exist!");
+            throw std::runtime_error("output failed!\n");
         }
 
         size_t playersSize = players.size();
@@ -69,13 +75,17 @@ void PlayerSystem::writeFile () {
     }
 }
 
-void PlayerSystem::showPlayersRank () {
+void PlayerSystem::showPlayersRank () const {
     std::cout << "======Rank======" << std::endl;
 
     size_t playersSize = players.size();
     std::cout << "Rank Players             Score" << std::endl; 
     for (size_t i  = 0; i < playersSize; i++) {
-        std::cout << std::left << std::setw(5) << i + 1 << std::setw(20) << players.at(i).first << std::setw(6) << players.at(i).second << std::endl;
+        std::cout 
+        << std::left << std::setw(5) << i + 1 
+        << std::setw(20) << players.at(i).first 
+        << std::setw(6) << players.at(i).second 
+        << std::endl;
     }
 
     std::cout << "================" << std::endl;

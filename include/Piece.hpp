@@ -1,20 +1,46 @@
 #ifndef BLOCK_H
 #define BLOCK_H
 
-#define PIECE_SIZE 5
+#include "../include/Board.hpp"
 
-struct Block {
+constexpr int PIECE_SIZE = 5;
+constexpr int PIECE_TYPE = 7;
+constexpr int PIECE_ROTATION = 4;
 
-    int mType; // 方塊種類 (0~6 對應7種基本方塊)
-    int mRotation; // 當前旋轉狀態 (0~3)
-    int mX, mY; // 此方塊左上角相對於棋盤的座標位置
+enum class PieceBlock {empty, filled, pivot};
+enum class PieceType {O, I, L, J, S, Z, T};
+enum class PieceRotation {up, right, down, left};
 
-    Block (int pType);
+class Board;
+
+class Piece {
+    private:
+
+    PieceType mType; 
+    PieceRotation mRotation; 
+    int mX, mY; 
+
+    public:
+
+    Piece (int pType);
+
+    inline int getType () const {return static_cast<int> (mType);} 
+    inline int getRotation () const {return static_cast<int> (mRotation);} 
+    inline int getX () const {return mX;} 
+    inline int getY () const {return mY;} 
+
+    void setType (int pType);
+    void setRotation (int pRotation);
+    inline void setX (int pX) {mX = pX;}
+    inline void setY (int pY) {mY = pY;}
+
+    void movePieceDown (const Board& pBoard);
+    void movePieceLeft (const Board& pBoard);
+    void movePieceRight (const Board& pBoard);
+    void rotatePiece (const Board& pBoard);
 };
 
-enum {EMPTY_BLOCK, FULL_BLOCK, PIVOT_BLOCK};
-
-static int PieceShapes[7][4][PIECE_SIZE][PIECE_SIZE] = {
+static int PieceShapes[PIECE_TYPE][PIECE_ROTATION][PIECE_SIZE][PIECE_SIZE] = {
     // O 方塊
     {
         {

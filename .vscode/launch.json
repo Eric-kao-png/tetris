@@ -4,7 +4,7 @@
             "name": "C/C++: g++-14 建置及偵錯使用中的檔案",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/Debug/tetris",
+            "program": "${workspaceFolder}/build/tetris",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
