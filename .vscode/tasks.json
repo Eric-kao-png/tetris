@@ -1,29 +1,29 @@
 {
-    "tasks": [
-        {
-            "type": "cppbuild",
-            "label": "C/C++: g++-14 建置使用中檔案",
-            "command": "/opt/homebrew/bin/g++-14",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "main.cpp",
-                "Game.cpp",
-                "Board.cpp",
-                "Piece.cpp",
-                "PlayerSystem.cpp",
-                "-o",
-                "${workspaceFolder}/build/tetris"
-            ],
-            "options": {
-                "cwd": "${fileDirname}"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build",
-            "detail": "偵錯工具產生的工作。"
-        }
-    ],
-    "version": "2.0.0"
+      "tasks": [
+            {
+                  "type": "cppbuild",
+                  "label": "C/C++: g++-14 建置使用中檔案",
+                  "command": "/opt/homebrew/bin/g++-14",
+                  "args": [
+                        "-fdiagnostics-color=always",
+                        "-g",
+                        "main.cpp",
+                        "Game.cpp",
+                        "Board.cpp",
+                        "Piece.cpp",
+                        "PlayerSystem.cpp",
+                        "-o",
+                        "${workspaceFolder}/build/tetris"
+                  ],
+                  "options": {
+                        "cwd": "${fileDirname}"
+                  },
+                  "problemMatcher": [
+                        "$gcc"
+                  ],
+                  "group": "build",
+                  "detail": "偵錯工具產生的工作。"
+            }
+      ],
+      "version": "2.0.0"
 }

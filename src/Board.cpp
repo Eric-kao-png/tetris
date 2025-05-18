@@ -118,7 +118,7 @@ void Board::draw (const Piece& currentPiece, const Piece& PieceBottom, int nextP
                 } else {
                     std::cout << " ";
                 }
-            } else if (PieceBottom.getY() - currentPiece.getY() > 5 && PieceBottom.getX() <= i && i < PieceBottom.getX() + PIECE_SIZE && PieceBottom.getY() <= j && j < PieceBottom.getY() + PIECE_SIZE) {
+            } else if (PieceBottom.getY() - currentPiece.getY() > SHOWING_RANGE && PieceBottom.getX() <= i && i < PieceBottom.getX() + PIECE_SIZE && PieceBottom.getY() <= j && j < PieceBottom.getY() + PIECE_SIZE) {
                 if (mGrid.at(j).at(i) == BoardBlock::filled) {
                     std::cout << "█";
                 } else if (PieceShapes[PieceBottom.getType()][PieceBottom.getRotation()][j - PieceBottom.getY()][i - PieceBottom.getX()] != static_cast<int> (PieceBlock::empty)) {

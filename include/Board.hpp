@@ -10,6 +10,7 @@ constexpr int BOARD_WIDTH = 8;
 constexpr int BOARD_HEIGHT = 21;
 constexpr int SHOW_NEXT_PIECE_TOP = 3;
 constexpr int SHOW_NEXT_BLOCK_DISTANCE = 3;
+constexpr int SHOWING_RANGE = 5;
 
 enum class BoardBlock {empty, filled};
 
