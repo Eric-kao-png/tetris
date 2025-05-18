@@ -19,11 +19,15 @@ class Game {
     
     Board mBoard;
     Piece mPiece;
+    Piece mPieceBottom;
+    int mNextPieceType;
     bool mGameOver;
     int mScore;
 
     int calculateScore (int clearedLines);
     void spawnNewBlock ();
+    int determineNextPiece ();
+    void movePieceBottom ();
     bool checkCollision ();
     void clearAndDraw ();
     char receiveInput ();

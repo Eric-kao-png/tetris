@@ -94,7 +94,7 @@ bool Board::isGameOver () const {
     return false;
 }
 
-void Board::draw (const Piece& currentPiece, int score) const {
+void Board::draw (const Piece& currentPiece, const Piece& PieceBottom, int nextPieceType, int score) const {
     // top
     std::cout << "+";
     for (int i = 0; i < BOARD_WIDTH; i++) {
@@ -118,6 +118,14 @@ void Board::draw (const Piece& currentPiece, int score) const {
                 } else {
                     std::cout << " ";
                 }
+            } else if (PieceBottom.getY() - currentPiece.getY() > 5 && PieceBottom.getX() <= i && i < PieceBottom.getX() + PIECE_SIZE && PieceBottom.getY() <= j && j < PieceBottom.getY() + PIECE_SIZE) {
+                if (mGrid.at(j).at(i) == BoardBlock::filled) {
+                    std::cout << "█";
+                } else if (PieceShapes[PieceBottom.getType()][PieceBottom.getRotation()][j - PieceBottom.getY()][i - PieceBottom.getX()] != static_cast<int> (PieceBlock::empty)) {
+                    std::cout << "⎕";
+                } else {
+                    std::cout << " ";
+                }
             } else {
                 if (mGrid.at(j).at(i) == BoardBlock::filled) {
                     std::cout << "█";
@@ -129,6 +137,21 @@ void Board::draw (const Piece& currentPiece, int score) const {
             }
         }
         std::cout << "|";
+
+        if (j >= SHOW_NEXT_PIECE_TOP && j <= SHOW_NEXT_PIECE_TOP + PIECE_SIZE - 1) {
+            std::cout << std::setw(SHOW_NEXT_BLOCK_DISTANCE);
+            for (int i = 0; i < PIECE_SIZE; i++) {
+                if (PieceShapes[nextPieceType][0][j - SHOW_NEXT_PIECE_TOP][i] == static_cast<int> (PieceBlock::empty)) {
+                    std::cout << " ";
+                }
+                if (PieceShapes[nextPieceType][0][j - SHOW_NEXT_PIECE_TOP][i] == static_cast<int> (PieceBlock::filled)) {
+                    std::cout << "#";
+                }
+                if (PieceShapes[nextPieceType][0][j - SHOW_NEXT_PIECE_TOP][i] == static_cast<int> (PieceBlock::pivot)) {
+                    std::cout << "*";
+                }
+            }
+        }
         std::cout << std::endl;
     }
 

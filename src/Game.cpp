@@ -1,16 +1,35 @@
 #include "../include/Game.hpp"
 
-Game::Game () : mGameOver(false), mPiece(Piece(0)), mScore(0) {
+Game::Game () : mGameOver(false), mPiece(Piece(0)), mPieceBottom(mPiece), mNextPieceType(-1), mScore(0) {
     srand (static_cast<unsigned int> (std::time (nullptr)));
-    spawnNewBlock ();
+    spawnNewBlock();
+    mNextPieceType = determineNextPiece();
+}
+
+int Game::determineNextPiece () {
+    int nextPieceType = rand() % PIECE_TYPE;
+    return nextPieceType;
+}
+
+void Game::movePieceBottom () {
+    mPieceBottom = mPiece;
+    mPieceBottom.movePieceBottom (mBoard);
 }
 
 void Game::spawnNewBlock () {
-    int newType = rand() % PIECE_TYPE;
-    mPiece.setType(newType);
+    
+    if (mNextPieceType == -1) {
+        int newType = rand() % PIECE_TYPE;
+        mPiece.setType (newType);
+    } else {
+        mPiece.setType(mNextPieceType);
+    }
+    
     mPiece.setRotation(0);
     mPiece.setX(BOARD_WIDTH / 2 - PIECE_SIZE / 2);
     mPiece.setY(0);
+
+    movePieceBottom();
 
     if (mBoard.isCollision (mPiece.getType(), mPiece.getRotation(), mPiece.getX(), mPiece.getY())) {
         mGameOver = true;
@@ -40,6 +59,7 @@ bool Game::checkCollision () {
         int clearedLines = mBoard.checkLines();
         mScore += calculateScore (clearedLines);
         spawnNewBlock();
+        mNextPieceType = determineNextPiece ();
         return true;
     }
     return false;
@@ -47,7 +67,7 @@ bool Game::checkCollision () {
 
 void Game::clearAndDraw () {
     system("clear");
-    mBoard.draw(mPiece, mScore);
+    mBoard.draw(mPiece, mPieceBottom, mNextPieceType, mScore);
 }
 
 char Game::receiveInput () {
@@ -73,15 +93,25 @@ void Game::processInput (char input) {
         case 'q':
             mGameOver = true; break;
         case 'a':
-            mPiece.movePieceLeft(mBoard); break;
+            mPiece.movePieceLeft (mBoard);
+            movePieceBottom();
+            break;
         case 'd':
-            mPiece.movePieceRight(mBoard); break;
+            mPiece.movePieceRight (mBoard);
+            movePieceBottom(); 
+            break;
         case 'w':
-            mPiece.rotatePiece(mBoard); break;
+            mPiece.rotatePiece (mBoard);
+            movePieceBottom(); 
+            break;
         case 's':
-            mPiece.movePieceDown(mBoard);
+            mPiece.movePieceDown (mBoard); 
             checkCollision();
             break;
+        case 'x':
+            mPiece.movePieceBottom (mBoard); 
+            checkCollision();
+            break; 
         default:
             return;
     }

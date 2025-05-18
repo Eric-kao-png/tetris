@@ -38,6 +38,7 @@ class Piece {
     void movePieceLeft (const Board& pBoard);
     void movePieceRight (const Board& pBoard);
     void rotatePiece (const Board& pBoard);
+    void movePieceBottom (const Board& pBoard);
 };
 
 static int PieceShapes[PIECE_TYPE][PIECE_ROTATION][PIECE_SIZE][PIECE_SIZE] = {

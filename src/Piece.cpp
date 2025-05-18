@@ -42,3 +42,9 @@ void Piece::rotatePiece (const Board& pBoard) {
       }
   }
 }
+
+void Piece::movePieceBottom (const Board& pBoard) {
+  while (pBoard.isCollision (static_cast<int> (mType), static_cast<int> (mRotation), mX, mY + 1) == false) {
+    movePieceDown(pBoard);
+  }
+}

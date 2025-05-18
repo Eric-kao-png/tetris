@@ -51,7 +51,6 @@ namespace {
 }
 
 int main (void) {
-    
     bool playAgain = false;
     do {
         struct termios oldt, newt;
